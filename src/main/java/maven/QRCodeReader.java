@@ -54,7 +54,7 @@ public class QRCodeReader {
     	    try {
     	        result = new MultiFormatReader().decode(bitmap);
     	    } catch (NotFoundException e) {
-    	        // fall thru, it means there is no QR code in image
+    	        System.out.println("Please hold the QR Code correctly into the Webcam");
     	    }
     	}
 
