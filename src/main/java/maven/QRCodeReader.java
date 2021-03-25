@@ -43,23 +43,27 @@ public class QRCodeReader {
 
     	Result result = null;
     	BufferedImage image = null;
-
+    	while(true) {
     	if (webcam.isOpen()) {
     	    if ((image = webcam.getImage()) == null) {
-//    	        continue;
+    	        continue;
     	    }
-
+    	    
     	    LuminanceSource source = new BufferedImageLuminanceSource(image);
     	    BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
     	    try {
     	        result = new MultiFormatReader().decode(bitmap);
     	    } catch (NotFoundException e) {
     	        System.out.println("Please hold the QR Code correctly into the Webcam");
+    	        try{
+    	            Thread.sleep(2000);
+    	       }catch(InterruptedException ex){}
     	    }
     	}
 
     	if (result != null) {
     		 System.out.println("QR code data is: " + result.getText());
-    	}
+    		 break;
+    	}}
     }
 }
