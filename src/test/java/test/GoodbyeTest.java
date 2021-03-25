@@ -12,6 +12,7 @@ public class GoodbyeTest {
 	public void test() {
 		Goodbye goodbye = new Goodbye();
 		assert(goodbye.isAlive());
+//		fail();
 	}
 
 }
