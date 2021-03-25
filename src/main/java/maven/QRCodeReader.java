@@ -5,9 +5,13 @@ import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import javax.imageio.ImageIO;
+
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class QRCodeReader {
 
@@ -63,6 +67,14 @@ public class QRCodeReader {
 
     	if (result != null) {
     		 System.out.println("QR code data is: " + result.getText());
+    		 if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+    			    try {
+						Desktop.getDesktop().browse(new URI(result.getText()));
+					} catch (IOException | URISyntaxException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+    			}
     		 break;
     	}}
     }
